@@ -4,7 +4,7 @@ class Api::V1::BooksController < ApplicationController
   # GET /books
   def index
     @books = params[:field] ? Book.find_by_field(params[:field], params[:value]) : Book.all
-    render json: @books
+    render json: generate_json
   end
 
   # GET /books/1
@@ -50,5 +50,19 @@ class Api::V1::BooksController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def book_params
       params.require(:book).permit(:isbn, :title, :date_published)
+    end
+
+    def generate_json
+      book_json = []
+      @books.each do |book|
+        book_json << {
+          id: book.id,
+          isbn: book.isbn,
+          title: book.title,
+          date_published: book.date_published,
+          authors: book.author_names
+        }
+      end
+      book_json
     end
 end
