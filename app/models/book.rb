@@ -1,14 +1,9 @@
 class Book < ApplicationRecord
-  has_many :authors
+  has_many :authors, dependent: :destroy
   has_many :book_genres, dependent: :destroy
+  has_many :genres, through: :book_genres
   scope :find_by_field, ->(field, value){ where("#{field} LIKE '%#{value}%'")}
 
-  def author_names
-    author_names = self.authors.first(2).collect(&:fullname).join(', ')
-    self.authors.count > 2 ? "#{author_names} et al" : author_names
-  end
-
-  def genre_categories
-    
-  end
+  validates :isbn, :title, :date_published, presence: true
+  validates :isbn, uniqueness: true
 end

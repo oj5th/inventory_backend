@@ -60,7 +60,8 @@ class Api::V1::BooksController < ApplicationController
           isbn: book.isbn,
           title: book.title,
           date_published: book.date_published,
-          authors: book.author_names
+          authors: book.authors.names,
+          genres: book.genres.names
         }
       end
       book_json
