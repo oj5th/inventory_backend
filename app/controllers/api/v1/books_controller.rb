@@ -25,7 +25,7 @@ class Api::V1::BooksController < ApplicationController
 
   # PATCH/PUT /books/1
   def update
-    if @book.update(book_params)
+    if @book.update(book_authors_params)
       render json: @book
     else
       render json: @book.errors, status: :unprocessable_entity
@@ -50,6 +50,10 @@ class Api::V1::BooksController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def book_params
       params.require(:book).permit(:isbn, :title, :date_published)
+    end
+
+    def book_authors_params
+      params.require(:book).permit(:isbn, :title, :date_published, authors_attributes: [:id, :firstname, :middlename, :lastname])
     end
 
     def generate_json

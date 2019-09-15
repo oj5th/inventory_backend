@@ -18,7 +18,7 @@ class Api::V1::GenresController < ApplicationController
     @genre = Genre.new(genre_params)
 
     if @genre.save
-      render json: @genre, status: :created, location: @genre
+      render json: @genre, status: :created
     else
       render json: @genre.errors, status: :unprocessable_entity
     end
