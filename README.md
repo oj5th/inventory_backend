@@ -7,6 +7,7 @@
 - ruby version '2.6.3'
 - rails version '5.2.3'
 - postgresql
+- redis
 
 ## Installation
 
@@ -36,4 +37,5 @@ rails db:seed
   end
   ```
 
-2. Run `localhost:3000` to make API up and running.
+2. Run your redis `redis-server`
+3. Run `rails s` to make API up and running.
