@@ -1,4 +1,5 @@
 class Api::V1::BooksController < ApplicationController
+  before_action :authorize_access_request!
   before_action :set_book, only: [:show, :update, :destroy]
 
   # GET /books

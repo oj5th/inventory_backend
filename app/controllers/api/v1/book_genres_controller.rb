@@ -1,4 +1,5 @@
 class Api::V1::BookGenresController < ApplicationController
+  before_action :authorize_access_request!
   before_action :set_book_genre, only: [:show, :update, :destroy]
 
   # GET /book_genres

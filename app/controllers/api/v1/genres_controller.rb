@@ -1,4 +1,5 @@
 class Api::V1::GenresController < ApplicationController
+  before_action :authorize_access_request!
   before_action :set_genre, only: [:show, :update, :destroy]
 
   # GET /genres
