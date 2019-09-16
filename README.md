@@ -1,24 +1,39 @@
-# README
+# Overview
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- This is a simple book inventory system and this is for backend (API) purposes only.
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+- ruby version '2.6.3'
+- rails version '5.2.3'
+- postgresql
 
-* System dependencies
+## Installation
 
-* Configuration
+To setup, you need to run the following commands.
 
-* Database creation
+```
+bundle install
+rails db:crete
+rails db:migrate
+rails db:seed
+```
 
-* Database initialization
+## Usage
 
-* How to run the test suite
+1. Make sure you have setup the cors properly:
+	- Update `config/initializers/cors.rb` port. Make sure that you enter the port from frontend `http://localhost:<PORT>`.
+  - Port will show after you setup inventory-frontend and run `yarn dev`.
 
-* Services (job queues, cache servers, search engines, etc.)
+	```
+	allow do
+    origins 'http://localhost:8080'
 
-* Deployment instructions
+    resource '*',
+      headers: :any,
+      credentials: true,
+      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+  end
+  ```
 
-* ...
+2. Run `localhost:3000` to make API up and running.
