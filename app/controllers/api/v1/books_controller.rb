@@ -53,7 +53,7 @@ class Api::V1::BooksController < ApplicationController
     end
 
     def book_authors_params
-      params.require(:book).permit(:isbn, :title, :date_published, authors_attributes: [:id, :firstname, :middlename, :lastname])
+      params.require(:book).permit(:isbn, :title, :date_published, authors_attributes: [:id, :firstname, :middlename, :lastname], book_genres_attributes: [:id, :genre_id, :book_id])
     end
 
     def generate_json
@@ -65,7 +65,8 @@ class Api::V1::BooksController < ApplicationController
           title: book.title,
           date_published: book.date_published,
           authors: book.authors.names,
-          genres: book.genres.names
+          genres: book.genres.names,
+          all_genre: Genre.all
         }
       end
       book_json
